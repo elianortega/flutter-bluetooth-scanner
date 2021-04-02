@@ -1,5 +1,4 @@
 part of 'scanner_provider.dart';
-// TODO: Implement Scanner StateNotifier
 
 /// Defines all the Scanner logic the app will use
 class ScannerNotifier extends StateNotifier<ScannerState> {
