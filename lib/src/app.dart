@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bluetooth_scanner/src/features/scanner/views/scanner_page.dart';
 
 class BluetoothScannerApp extends StatelessWidget {
   @override
@@ -9,7 +10,7 @@ class BluetoothScannerApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Scaffold(),
+      home: const ScannerPage(),
     );
   }
 }

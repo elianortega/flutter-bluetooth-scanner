@@ -14,6 +14,7 @@ dependencies:
 
   #state_management
   hooks_riverpod: ^0.13.1+1
+  flutter_blue: ^0.8.0
 
   # i18n
   i18n_extension: ^4.0.0
@@ -28,7 +29,7 @@ dev_dependencies:
   json_serializable: ^4.1.0
 
   # testing
-  mockito: ^5.0.3
+  mocktail: ^0.1.1
 
   # static analysis
   very_good_analysis: ^2.0.0
