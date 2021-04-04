@@ -10,8 +10,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.2
+  flutter_localizations:
+    sdk: flutter 
 
+
+  cupertino_icons: ^1.0.2
+  rect_getter: ^1.0.0
   #state_management
   hooks_riverpod: ^0.13.1+1
   flutter_blue: ^0.8.0
@@ -37,6 +41,6 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/images/
   #   - images/a_dot_ham.jpeg

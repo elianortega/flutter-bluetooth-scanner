@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:flutter_bluetooth_scanner/src/features/scanner/logic/scanner_provider.dart';
 import 'package:flutter_bluetooth_scanner/src/features/scanner/logic/scanner_state.dart';
