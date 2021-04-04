@@ -6,7 +6,8 @@ class ScannerNotifier extends StateNotifier<ScannerState> {
   /// read its usecases and also defines inital state
   ScannerNotifier({
     required this.flutterBlue,
-  }) : super(const ScannerState.initial());
+    ScannerState? initialState,
+  }) : super(initialState ?? const ScannerState.initial());
 
   final FlutterBlue flutterBlue;
 

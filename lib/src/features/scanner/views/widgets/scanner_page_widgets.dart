@@ -25,6 +25,7 @@ class _ListView extends ConsumerWidget {
     return data.when(
       data: (list) => Expanded(
         child: ListView.builder(
+          key: kItemListKey,
           itemBuilder: (context, i) {
             final scanResult = list[i];
             return ListTile(
@@ -57,11 +58,13 @@ class _ButtonsConsumer extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           ElevatedButton(
+            key: kScanButtonKey,
             child: state.isLoading
-                ? const SizedBox(
+                ? SizedBox(
                     height: 20,
                     width: 20,
                     child: CircularProgressIndicator(
+                      key: kLoadingIndicatorKey,
                       strokeWidth: 3.0,
                     ),
                   )

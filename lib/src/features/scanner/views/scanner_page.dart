@@ -13,14 +13,19 @@ import './scanner_page_i18n.dart';
 
 part './widgets/scanner_page_widgets.dart';
 
-//Rect animation provider
+///Keys for testing
+final kScanButtonKey = UniqueKey();
+final kItemListKey = UniqueKey();
+final kScannerPageKey = UniqueKey();
+final kLoadingIndicatorKey = UniqueKey();
 
+//Rect animation provider
 final rectAnimationProvider = StateProvider<Rect?>((ref) => null);
 
 ///ScannerPage
 class ScannerPage extends StatelessWidget {
   ///ScannerPage constructor
-  ScannerPage({Key? key}) : super(key: key);
+  ScannerPage() : super(key: kScannerPageKey);
 
   ///ScannerPage [routeName]
   static const routeName = 'ScannerPage';
