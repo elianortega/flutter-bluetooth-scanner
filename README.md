@@ -7,6 +7,7 @@ A flutter application that scans near bluetooth devices and gives name and mac d
 - ✅  Performance
 - ✅  Custom Animations
 - ✅  Internationalization
+- ✅  Theme Changes
 - ✅ IOS
 
 
