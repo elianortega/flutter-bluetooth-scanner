@@ -1,5 +1,6 @@
 import 'package:i18n_extension/i18n_extension.dart';
 
+const kScannerPage = 'Scanner Page';
 const kWelcomeMessage = 'This project was created by Elian Ortega.';
 
 /// This extension method contains all
@@ -9,6 +10,10 @@ extension NameStrings on String {
       {
         'en_us': kWelcomeMessage,
         'es_es': 'Este proyecto fue creado por Elian Ortega.',
+      } +
+      {
+        'en_us': kScannerPage,
+        'es_es': 'Pagina de Scan',
       };
 
   /// Getter to translate the string

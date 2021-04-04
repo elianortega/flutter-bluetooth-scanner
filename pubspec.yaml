@@ -15,7 +15,6 @@ dependencies:
 
 
   cupertino_icons: ^1.0.2
-  rect_getter: ^1.0.0
   #state_management
   hooks_riverpod: ^0.13.1+1
   flutter_blue: ^0.8.0

@@ -29,41 +29,44 @@ class DetailPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Hero(
-            tag: 'app_logo',
-            child: Image.asset(
-              'assets/images/transparent_hypervolt_logo.png',
-              height: 150,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Hero(
+              tag: 'app_logo',
+              child: Image.asset(
+                'assets/images/transparent_hypervolt_logo.png',
+                height: 150,
+              ),
             ),
-          ),
-          Text(
-            '${kScannedItemDetails.i18n}',
-            style: Theme.of(context).textTheme.headline5,
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 20.0),
-          SimpleSlideAnimation(
-            initialOffset: const Offset(100, 100),
-            child: Text(
-              '${kName.i18n} ${scanResult.device.name}',
-              style: Theme.of(context).textTheme.bodyText1,
+            Text(
+              '${kScannedItemDetails.i18n}',
+              style: Theme.of(context).textTheme.headline5,
               textAlign: TextAlign.center,
             ),
-          ),
-          const SizedBox(height: 20.0),
-          SimpleSlideAnimation(
-            initialOffset: const Offset(-100, -100),
-            child: Text(
-              '${kMac.i18n} ${scanResult.device.id}',
-              style: Theme.of(context).textTheme.bodyText1,
-              textAlign: TextAlign.center,
+            const SizedBox(height: 20.0),
+            SimpleSlideAnimation(
+              initialOffset: const Offset(100, 100),
+              child: Text(
+                '${kName.i18n} ${scanResult.device.name}',
+                style: Theme.of(context).textTheme.bodyText1,
+                textAlign: TextAlign.center,
+              ),
             ),
-          ),
-        ],
+            const SizedBox(height: 20.0),
+            SimpleSlideAnimation(
+              initialOffset: const Offset(-100, -100),
+              child: Text(
+                '${kMac.i18n} ${scanResult.device.id}',
+                style: Theme.of(context).textTheme.bodyText1,
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

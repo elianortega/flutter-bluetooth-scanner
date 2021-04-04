@@ -1,0 +1,98 @@
+part of '../scanner_page.dart';
+
+class _IconThemeToggler extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, ScopedReader watch) {
+    final isDarkTheme = watch(themeProvider.state);
+    return IconButton(
+      onPressed: context.read(themeProvider).toggleTheme,
+      icon: Icon(
+        isDarkTheme ? Icons.wb_sunny_rounded : Icons.nights_stay_rounded,
+      ),
+    );
+  }
+}
+
+class _ListView extends ConsumerWidget {
+  _ListView({required this.onTap});
+  final void Function({required Widget page}) onTap;
+
+  @override
+  Widget build(BuildContext context, ScopedReader watch) {
+    // ignore: omit_local_variable_types
+    AsyncValue<List<ScanResult>> data = watch(streamProvider);
+
+    return data.when(
+      data: (list) => Expanded(
+        child: ListView.builder(
+          itemBuilder: (context, i) {
+            final scanResult = list[i];
+            return ListTile(
+              title: Text('${scanResult.device.name}'),
+              subtitle: Text('${scanResult.device.id}'),
+              onTap: () {
+                onTap(
+                  page: DetailPage(scanResult: scanResult),
+                );
+              },
+            );
+          },
+          itemCount: list.length,
+        ),
+      ),
+      loading: () => const CircularProgressIndicator(
+        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+      ),
+      error: (_, __) => const Text('Error'),
+    );
+  }
+}
+
+class _ButtonsConsumer extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, ScopedReader watch) {
+    final state = watch(scannerNotifierProvider.state);
+    return SafeArea(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          ElevatedButton(
+            child: state.isLoading
+                ? const SizedBox(
+                    height: 20,
+                    width: 20,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 3.0,
+                    ),
+                  )
+                : const Text('Scan'),
+            onPressed: !state.isLoading
+                ? () {
+                    context.read(scannerNotifierProvider).scan();
+                  }
+                : null,
+          ),
+          ElevatedButton(
+            child: const Text('Cancel Scan'),
+            onPressed: state.isLoading
+                ? () {
+                    context.read(scannerNotifierProvider).stopScan();
+                  }
+                : null,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class FadeRouteBuilder<T> extends PageRouteBuilder<T> {
+  FadeRouteBuilder({required this.page})
+      : super(
+          pageBuilder: (context, animation1, animation2) => page,
+          transitionsBuilder: (context, animation1, animation2, child) {
+            return FadeTransition(opacity: animation1, child: child);
+          },
+        );
+  final Widget page;
+}
