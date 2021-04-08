@@ -3,9 +3,9 @@ part of '../scanner_page.dart';
 class _IconThemeToggler extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final isDarkTheme = watch(themeProvider.state);
+    final isDarkTheme = watch(themeProvider);
     return IconButton(
-      onPressed: context.read(themeProvider).toggleTheme,
+      onPressed: context.read(themeProvider.notifier).toggleTheme,
       icon: Icon(
         isDarkTheme ? Icons.wb_sunny_rounded : Icons.nights_stay_rounded,
       ),
@@ -52,7 +52,7 @@ class _ListView extends ConsumerWidget {
 class _ButtonsConsumer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final state = watch(scannerNotifierProvider.state);
+    final state = watch(scannerNotifierProvider);
     return SafeArea(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -71,7 +71,7 @@ class _ButtonsConsumer extends ConsumerWidget {
                 : const Text('Scan'),
             onPressed: !state.isLoading
                 ? () {
-                    context.read(scannerNotifierProvider).scan();
+                    context.read(scannerNotifierProvider.notifier).resumeScan();
                   }
                 : null,
           ),
@@ -79,7 +79,7 @@ class _ButtonsConsumer extends ConsumerWidget {
             child: const Text('Cancel Scan'),
             onPressed: state.isLoading
                 ? () {
-                    context.read(scannerNotifierProvider).stopScan();
+                    context.read(scannerNotifierProvider.notifier).pauseScan();
                   }
                 : null,
           ),

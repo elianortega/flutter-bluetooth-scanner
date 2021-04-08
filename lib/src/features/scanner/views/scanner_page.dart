@@ -5,6 +5,7 @@ import 'package:flutter_blue/flutter_blue.dart';
 import 'package:flutter_bluetooth_scanner/src/core/constants/app_images.dart';
 import 'package:flutter_bluetooth_scanner/src/core/global_providers/theme_provider.dart';
 import 'package:flutter_bluetooth_scanner/src/features/scanner/views/detail_page.dart';
+import 'package:flutter_bluetooth_scanner/src/features/scanner/views/widgets/scanning_status.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../logic/scanner_provider.dart';
@@ -14,6 +15,7 @@ import './scanner_page_i18n.dart';
 part './widgets/scanner_page_widgets.dart';
 
 ///Keys for testing
+final kScanningStatusWidgetKey = UniqueKey();
 final kScanButtonKey = UniqueKey();
 final kItemListKey = UniqueKey();
 final kScannerPageKey = UniqueKey();
@@ -51,12 +53,17 @@ class ScannerPage extends StatelessWidget {
               .state
               ?.inflate(1.3 * MediaQuery.of(context).size.longestSide);
 
-          Future.delayed(
-            animationDuration + delay,
-            () => Navigator.of(context)
+          Future.delayed(animationDuration + delay, () {
+            context.read(scannerNotifierProvider.notifier).pauseScan();
+            return Navigator.of(context)
                 .push(FadeRouteBuilder(page: page))
-                .then((_) => context.read(rectAnimationProvider).state = null),
-          );
+                .then(
+              (_) {
+                context.read(scannerNotifierProvider.notifier).resumeScan();
+                context.read(rectAnimationProvider).state = null;
+              },
+            );
+          });
         },
       );
     }
@@ -80,11 +87,14 @@ class ScannerPage extends StatelessWidget {
               _ListView(
                 onTap: _onTap,
               ),
-              _ButtonsConsumer(),
+              // _ButtonsConsumer(),
             ],
           ),
         ),
-        const _RippleAnimation()
+        const _RippleAnimation(),
+        ScanningStatus(
+          key: kScanningStatusWidgetKey,
+        ),
       ],
     );
   }

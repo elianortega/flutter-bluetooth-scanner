@@ -11,13 +11,13 @@ class ScannerNotifier extends StateNotifier<ScannerState> {
 
   final FlutterBlue flutterBlue;
 
-  Future<void> scan() async {
+  Future<void> resumeScan() async {
     state = const ScannerState.loading();
     await flutterBlue.startScan();
     state = const ScannerState.initial();
   }
 
-  Future<void> stopScan() async {
+  Future<void> pauseScan() async {
     await flutterBlue.stopScan();
   }
 }

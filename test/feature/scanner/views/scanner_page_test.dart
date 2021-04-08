@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:flutter_bluetooth_scanner/src/features/scanner/logic/scanner_provider.dart';
 import 'package:flutter_bluetooth_scanner/src/features/scanner/logic/scanner_state.dart';
+import 'package:flutter_bluetooth_scanner/src/features/scanner/views/widgets/scanning_status.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -30,10 +31,19 @@ void main() {
       expect(find.byKey(kScannerPageKey), findsOneWidget);
     });
 
-    testWidgets('renders a Scan button when page loaded', (tester) async {
+    testWidgets('renders a Scan Status Widget when page loaded',
+        (tester) async {
       ///act
       await tester.pumpWidget(
         ProviderScope(
+          overrides: [
+            scannerNotifierProvider.overrideWithValue(
+              ScannerNotifier(
+                flutterBlue: MockFlutterBlue(),
+                initialState: const ScannerState.initial(),
+              ),
+            ),
+          ],
           child: MaterialApp(
             home: ScannerPage(),
           ),
@@ -41,10 +51,10 @@ void main() {
       );
 
       ///expect
-      expect(find.byKey(kScanButtonKey), findsOneWidget);
+      expect(find.byKey(kScanningStatusWidgetKey), findsOneWidget);
     });
 
-    testWidgets('renders loading indicator For ScannerState.Loading',
+    testWidgets('renders ScannerStatusGreen For ScannerState.Loading',
         (tester) async {
       ///Act
       await tester.pumpWidget(
@@ -64,7 +74,7 @@ void main() {
       );
 
       ///Expect
-      expect(find.byKey(kLoadingIndicatorKey), findsOneWidget);
+      expect(find.byKey(kScanningKey), findsOneWidget);
     });
   });
 }

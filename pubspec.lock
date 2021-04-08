@@ -227,7 +227,7 @@ packages:
       name: flutter_riverpod
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.13.1+1"
+    version: "0.14.0+1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -274,7 +274,7 @@ packages:
       name: hooks_riverpod
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.13.1+1"
+    version: "0.14.0+1"
   http_multi_server:
     dependency: transitive
     description:
@@ -428,7 +428,7 @@ packages:
       name: riverpod
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.13.1"
+    version: "0.14.0+1"
   rxdart:
     dependency: transitive
     description:

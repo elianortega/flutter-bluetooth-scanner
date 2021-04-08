@@ -8,7 +8,7 @@ import 'package:flutter_bluetooth_scanner/src/features/scanner/views/scanner_pag
 class BluetoothScannerApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final isDarkTheme = watch(themeProvider.state);
+    final isDarkTheme = watch(themeProvider);
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
